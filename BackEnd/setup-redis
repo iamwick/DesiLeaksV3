@@ -1,0 +1,35 @@
+on remote server , first install redis-search then do the further setup
+
+FT.CREATE video_index ON HASH PREFIX 1 "video:" SCHEMA \
+title TEXT SORTABLE \
+thumbnail TEXT \
+url TEXT \
+id NUMERIC SORTABLE
+
+
+pip install redis
+
+
+
+import redis
+import json
+
+# Connect to Redis
+redis_client = redis.Redis(host='localhost', port=6379, decode_responses=True)
+
+# Load videos from JSON
+with open("videos.json", "r") as file:
+    videos = json.load(file)
+
+# Insert videos into Redis
+for video in videos:
+    key = f"video:{video['id']}"
+    redis_client.hset(key, mapping={
+        "title": video["title"],
+        "thumbnail": video["thumbnail"],
+        "url": video["url"],
+        "id": video["id"]
+    })
+
+print("✅ Videos inserted into Redis successfully!")
+
