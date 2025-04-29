@@ -277,7 +277,7 @@ async def get_video_by_id(id: str):
         return {"error": str(e)}
     
 
-@app.get("/trending/videos")
+@app.get("/api/trending/videos")
 async def get_trending_videos():
     try:
         print('request reached here')

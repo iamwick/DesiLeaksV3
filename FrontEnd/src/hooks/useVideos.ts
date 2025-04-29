@@ -231,7 +231,7 @@ const fetchTrendingVideos = async (): Promise<VideosResponse> => {
   try {
     let response; {
       // Fetch videos by page
-      response = await fetch(`${apiUrl}/trending`, {
+      response = await fetch(`${apiUrl}/api/trending/videos`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

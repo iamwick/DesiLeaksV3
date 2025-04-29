@@ -21,7 +21,6 @@ const TrendingPage: React.FC = () => {
     return (
       <div className="min-h-screen bg-adult-dark text-white">
         <Navbar />
-        
         <main className="container mx-auto px-4 py-6">
           {/* Hero Section */}
           {/* <section className="mb-12">
