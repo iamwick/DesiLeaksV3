@@ -277,10 +277,11 @@ async def get_video_by_id(id: str):
         return {"error": str(e)}
     
 
-@app.get("/trending")
+@app.get("/trending/videos")
 async def get_trending_videos():
     try:
         print('request reached here')
+
         global global_video_index_cache
 
         # Sort videos by viewCount (descending)
