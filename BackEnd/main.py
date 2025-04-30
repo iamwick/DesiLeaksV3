@@ -250,10 +250,12 @@ async def get_video_by_id(id: str):
 
         regex = re.compile(re.escape(main_video["title"]), re.IGNORECASE)  # Create a case-insensitive regex
         
-        matching_videos = [
-            video for video in global_video_index_cache.values()
-            if regex.search(main_video['title'])  # Match title using regex
-        ]
+        matching_videos = []
+        for video in global_video_index_cache.values():
+            if regex.search(main_video['title']):  # Match title using regex
+                matching_videos.append(video)
+            if len(matching_videos) == 8:  # Stop if 8 videos are found
+                break
 
         all_videos = [ main_video ]  # Start with the main video
         all_videos.extend(matching_videos)
